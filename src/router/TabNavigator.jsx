@@ -1,3 +1,5 @@
+//BOTTOM -TAB NAVIGATOR
+
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import {CHARACTERS, EPISODES, LOCATIONS, SETTINGS} from '../utils/ScreenName';
 import Characters from '../screens/Characters';
@@ -6,6 +8,8 @@ import Locations from '../screens/Locations';
 import Settings from '../screens/Settings';
 import TabIcon from '../components/router/tabIcon';
 import {tabBarStyle} from '../styles/tabBarStyle';
+import {Platform} from 'react-native';
+import HeaderRight from '../components/router/HeaderRight';
 
 const Tab = createBottomTabNavigator();
 
@@ -22,12 +26,15 @@ function TabNavigator() {
           />
         ),
         tabBarActiveTintColor: '#FFFFFF',
-        tabBarInactiveTintColor: '#A1A1A1', // Pasif renk
+        tabBarInactiveTintColor: '#A1A1A1',
         headerStyle: tabBarStyle.headerStyle,
         tabBarStyle: tabBarStyle.tabBarStyle,
         tabBarLabelStyle: tabBarStyle.tabBarLabelStyle,
         headerTitleStyle: tabBarStyle.headerTitleStyle,
         tabBarHideOnKeyboard: true, // Klavye açıldığında TabBar'ı gizle
+        headerTitleAlign: Platform.OS === 'ios' ? 'center' : 'center', // iOS ve Android için başlık hizalaması
+        headerBackTitleVisible: false, // Geri butonunun başlıkla karışmaması için
+        headerRight: () => <HeaderRight />, // HeaderRight bileşenini burada ekliyoruz
       })}>
       <Tab.Screen name={CHARACTERS} component={Characters} />
       <Tab.Screen name={EPISODES} component={Episodes} />

@@ -21,6 +21,7 @@ const Characters = () => {
         <Spinner />
       ) : (
         <FlatList
+          nestedScrollEnabled={true}
           data={characterList}
           renderItem={({item}) => <CharacterCard item={item} />}
         />

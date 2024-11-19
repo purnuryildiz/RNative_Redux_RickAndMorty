@@ -3,10 +3,16 @@ import React from 'react';
 import {ArrowCircleRight} from 'iconsax-react-native';
 import GenderIcon from './GenderIcon';
 import Colors from '../../theme/colors';
-
+import {useNavigation} from '@react-navigation/native';
+import {CHARACTERDETAIL} from '../../utils/ScreenName';
 const CharacterCard = ({item}) => {
+  const navigation = useNavigation();
   return (
-    <Pressable style={styles.card}>
+    <Pressable
+      style={styles.card}
+      onPress={() =>
+        navigation.navigate(CHARACTERDETAIL, {characterID: item.id})
+      }>
       <View style={styles.cardContent}>
         <Image source={{uri: item.image}} style={styles.image} />
         <View style={styles.textContainer}>
